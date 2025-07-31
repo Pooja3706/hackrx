@@ -82,6 +82,11 @@ ml_models = {}
 # Initialize FastAPI App
 app = FastAPI(title="HackRx RAG API")
 
+# <-- ADDED: Root GET route to avoid 404 on "/" -->
+@app.get("/")
+async def root():
+    return {"message": "HackRx RAG API is live. Use POST /hackrx/run to query."}
+
 # Use the @app.on_event decorator for startup tasks
 @app.on_event("startup")
 async def startup_event():
